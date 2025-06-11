@@ -1,0 +1,53 @@
+Folder structure:
+
+C:\Docker\my-java-app
+├── Dockerfile
+├── Main.java
+├── Helper.java
+
+[Uploaded in github]
+
+C:\Docker\my-java-app2>docker build -t my-java-app2 .
+[+] Building 5.3s (9/9) FINISHED                                                                   docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                               0.3s
+ => => transferring dockerfile: 323B                                                                               0.0s
+ => [internal] load metadata for docker.io/library/openjdk:17                                                      2.4s
+ => [internal] load .dockerignore                                                                                  0.1s
+ => => transferring context: 2B                                                                                    0.0s
+ => [1/4] FROM docker.io/library/openjdk:17@sha256:528707081fdb9562eb819128a9f85ae7fe000e2fbaeaf9f87662e7b3f38cb7  0.1s
+ => => resolve docker.io/library/openjdk:17@sha256:528707081fdb9562eb819128a9f85ae7fe000e2fbaeaf9f87662e7b3f38cb7  0.1s
+ => [internal] load build context                                                                                  0.1s
+ => => transferring context: 302B                                                                                  0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                      0.0s
+ => [3/4] COPY *.java .                                                                                            0.1s
+ => [4/4] RUN javac *.java                                                                                         1.1s
+ => exporting to image                                                                                             0.9s
+ => => exporting layers                                                                                            0.4s
+ => => exporting manifest sha256:0487fea97b402c06376f69b58fc0f14768bd1c393c634d06b212cc751cb8e616                  0.0s
+ => => exporting config sha256:c51b7703fd4e15dbf0398a49b111bbb2eb5ce11b47e055e078f764119c185d3d                    0.0s
+ => => exporting attestation manifest sha256:625ca1990721ee3e966b45b3c8ac5a4cdde3b4d8544792a3728b0f8b8521df36      0.1s
+ => => exporting manifest list sha256:b75204126c990d5ce34d4b50b9236fdb9f0f43cef26ce1a5846a843efdb21360             0.0s
+ => => naming to docker.io/library/my-java-app2:latest                                                             0.0s
+ => => unpacking to docker.io/library/my-java-app2:latest                                                          0.2s
+
+C:\Docker\my-java-app2>docker run my-java-app2
+Hello from Helper!
+
+C:\Docker\my-java-app2>docker images
+REPOSITORY                 TAG       IMAGE ID       CREATED          SIZE
+my-java-app2               latest    b75204126c99   20 seconds ago   727MB
+hello-world                latest    940c619fbd41   4 months ago     20.4kB
+docker/welcome-to-docker   latest    eedaff45e3c7   19 months ago    29.5MB
+
+C:\Docker\my-java-app2>docker ps -a
+CONTAINER ID   IMAGE          COMMAND       CREATED          STATUS                      PORTS     NAMES
+8f5842c9fbe6   my-java-app2   "java Main"   18 seconds ago   Exited (0) 17 seconds ago             keen_taussig
+
+C:\Docker\my-java-app2>docker rm 8f
+8f
+
+C:\Docker\my-java-app2>docker rmi my-java-app2
+Untagged: my-java-app2:latest
+Deleted: sha256:b75204126c990d5ce34d4b50b9236fdb9f0f43cef26ce1a5846a843efdb21360
+
+C:\Docker\my-java-app2>
