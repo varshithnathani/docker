@@ -1,0 +1,57 @@
+Folder Strecture:
+/my-java-app
+ ├── Main.java
+ └── Dockerfile
+[Uploaded in github]
+
+C:\Docker\my-java-app>:: we created a Main.java file with simple sysout statement.
+C:\Docker\my-java-app>:: created a Dockerfile --> with instructions to create a image
+C:\Docker\my-java-app>:: setting working directory, copy Main.java, compile Main.java, run the program.
+C:\Docker\my-java-app>
+C:\Docker\my-java-app>
+C:\Docker\my-java-app>:: building the image
+C:\Docker\my-java-app>
+C:\Docker\my-java-app>docker build -t my-java-app .
+[+] Building 2.8s (9/9) FINISHED                                                                                docker:desktop-linux
+ => [internal] load build definition from Dockerfile                                                                            0.0s
+ => => transferring dockerfile: 323B                                                                                            0.0s
+ => [internal] load metadata for docker.io/library/openjdk:17                                                                   2.0s
+ => [internal] load .dockerignore                                                                                               0.0s
+ => => transferring context: 2B                                                                                                 0.0s
+ => [1/4] FROM docker.io/library/openjdk:17@sha256:528707081fdb9562eb819128a9f85ae7fe000e2fbaeaf9f87662e7b3f38cb7d8             0.1s
+ => => resolve docker.io/library/openjdk:17@sha256:528707081fdb9562eb819128a9f85ae7fe000e2fbaeaf9f87662e7b3f38cb7d8             0.1s
+ => [internal] load build context                                                                                               0.0s
+ => => transferring context: 31B                                                                                                0.0s
+ => CACHED [2/4] WORKDIR /app                                                                                                   0.0s
+ => CACHED [3/4] COPY Main.java .                                                                                               0.0s
+ => CACHED [4/4] RUN javac Main.java                                                                                            0.0s
+ => exporting to image                                                                                                          0.4s
+ => => exporting layers                                                                                                         0.0s
+ => => exporting manifest sha256:8b2b3c1bc45d06e0e17258cb7da8b0c6fab7e4b8b15dc0869286796d5347abe4                               0.0s
+ => => exporting config sha256:eab33b2c5909b719bf8859f146a15a22b1c3f547e6c2b0a3893987b9ab10dab6                                 0.0s
+ => => exporting attestation manifest sha256:dbd999a96dd5d6283610c9c99f78341102de792ba2198ddd0853db1f4d90ae09                   0.1s
+ => => exporting manifest list sha256:f31980290833a0b83dc66fe63f57625dc179d5242adcbc4e59488a8da77c14a6                          0.0s
+ => => naming to docker.io/library/my-java-app:latest                                                                           0.0s
+ => => unpacking to docker.io/library/my-java-app:latest                                                                        0.2s
+
+C:\Docker\my-java-app>docker run my-java-app
+Hello from Docker!
+
+C:\Docker\my-java-app>docker ps -a
+CONTAINER ID   IMAGE         COMMAND       CREATED          STATUS                      PORTS     NAMES
+c1ca761dfd3f   my-java-app   "java Main"   12 seconds ago   Exited (0) 10 seconds ago             serene_franklin
+
+C:\Docker\my-java-app>docker rm c1c
+c1c
+
+C:\Docker\my-java-app>docker images
+REPOSITORY                 TAG       IMAGE ID       CREATED         SIZE
+my-java-app                latest    f31980290833   6 minutes ago   727MB
+hello-world                latest    940c619fbd41   4 months ago    20.4kB
+docker/welcome-to-docker   latest    eedaff45e3c7   19 months ago   29.5MB
+
+C:\Docker\my-java-app>docker rmi my-java-app
+Untagged: my-java-app:latest
+Deleted: sha256:f31980290833a0b83dc66fe63f57625dc179d5242adcbc4e59488a8da77c14a6
+
+C:\Docker\my-java-app>
